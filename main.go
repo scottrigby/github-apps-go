@@ -42,10 +42,8 @@ func handleWebhook(w http.ResponseWriter, r *http.Request) {
 
 		// To-do: think of something better to do with GitHub API client.
 		ctx := context.Background()
-		// Broken for some reason. To-do: fix this.
-		// owner := e.Repo.Owner.GetName()
-		owner := "scottrigby"
-		repo := e.Repo.GetName()
+		owner := *e.Repo.Owner.Login
+		repo := *e.Repo.Name
 		number := *e.PullRequest.Number
 		log.Printf("owner: %s, repo: %s, number: %v\n", owner, repo, number)
 
